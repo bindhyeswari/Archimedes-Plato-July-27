@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <script>
+
+        // Immediately Invoked Function Expression(IIFE)
+
+        // 1. Not to create global variables
+
+        'use strict';
+
+        (function test(greeting) {
+            var x = 10;
+            console.log(x);
+            console.log(greeting);
+            console.log(this);
+        }('Hello from IIFE!'));
+
+        // Object
+
+        var x = {
+            sayHello: function (greeting) {
+                console.log(greeting);
+            }
+        };
+        x.sayHello('Hello from the object x.');
+
+        // Create an object and invoke the method and
+        // discard the object after the method invocation
+        
+
+
+
+
+
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>
