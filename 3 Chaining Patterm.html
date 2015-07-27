@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            function $(inp) {
+                // use the constructor to create the object
+                if (typeof inp === 'string') {
+                    return new $(document.querySelector(inp));
+                } else {
+                    if (Object.getPrototypeOf(this) === $.prototype) {
+                        this.element = inp;
+                    }
+                }
+
+                //todo: move the following code to a constructor
+
+            }
+
+            $.prototype.html = function (str) {
+                if(typeof str === 'undefined') return this.element.innerHTML;
+                else this.element.innerHTML = str;
+            };
+
+            /*var div = $('div').html('This is a div').addClass('mydiv');*/
+
+            var $span = $('span'); // jquery wrapped DOM object
+            $span.html();
+
+        });
+
+    </script>
+</head>
+<body>
+    <div>This is the first div</div>
+    <span>This is the first span</span>
+</body>
+</html>
