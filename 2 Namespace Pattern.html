@@ -6,9 +6,27 @@
     <script>
 
         var GitHubLibrary = {
-            init: function (path) {
+            init: function (path, prop_value) {
                 // create the modules if they dont exist
                 // define the object
+
+                var modules = path.split('.');
+                console.log(modules);
+                if (modules[0] === 'GitHubLibrary') modules.splice(0, 1);
+                var property = modules.pop();
+                console.log(modules);
+
+                // loop over all the property names
+                // create the property if it does not exist
+                // return a reference to the property to the next loop
+                var innermost_module = modules.reduce(function (o, prop_name) { //  ["login", "oauth", "authorize"]
+                    if (prop_name in o) return o[prop_name];
+                    else o[prop_name] = {};
+                    return o[prop_name];
+                }, GitHubLibrary);
+
+                innermost_module[property] = prop_value; // GithubLibrary.login.oauth['authorize'] = functional_obj
+                console.log(GitHubLibrary);
             },
             search: {
                 respositories: {
