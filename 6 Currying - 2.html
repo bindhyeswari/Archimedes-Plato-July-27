@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+
+        function multiply(x, y) {
+            return x * y;
+        }
+
+        function partial(fn) {
+            // returns a curried version of that function
+
+        }
+
+        var multiplyp = partial(multiply);
+        var discount25 = multiplyp(0.75);
+        console.log(discount25(100));
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

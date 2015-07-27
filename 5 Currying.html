@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+
+
+        // partial application
+        // currying
+
+        function multiply(x, y) {
+            if (arguments.length === 1) {
+                return function (y) {
+                    return x * y;
+                }
+            } else {
+                return x * y;
+            }
+        }
+
+        // Walmart --> discount25, discount30
+
+
+
+
+        var discount70 = multiply(0.30);
+        var discount25 = multiply(0.75);
+        var discount30 = multiply(0.70);
+        console.log(typeof discount70); // function
+        console.log(discount70(32));
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -21,8 +21,8 @@
             console.log(str, num);
         }
 
-        square(13); // 169
-        square(13); // will still run, without a cache.
+        //square(13); // 169
+        //square(13); // will still run, without a cache.
 
         function memoize(fn) {
 
@@ -34,11 +34,21 @@
                 // caching part
                 // generate a key
 
+                var key = args.reduce(function (str, val) {
+                    switch (typeof val) {
+                        case 'object': return str + '|' + JSON.stringify(val);
+                        case 'function': return str + '|' + val.toString();
+                        default: return str + '|' + val;
+                    }
+                }, '');
 
+                console.log(key);
 
+                if (!(key in fn.cache)) {
+                    fn.cache[key] = fn.apply(null, args);
+                }
 
-                // primary version
-                return fn.apply(null, arguments);
+                return fn.cache[key];
             };
         }
 
@@ -50,6 +60,13 @@
         console.log('square_memoized(13): ', square_memoized(13));
 
         var sum_memoized = memoize(sum);
+        sum_memoized(10, 11);
+
+        var generic_m = memoize(generic);
+        generic_m({name: 'Amy'}, 'data', 3, function () {console.log('Hello World!');});
+
+        // console.log(window.crypto.subtle.hash);
+        // SHA 256 hash of the string generated
 
 
 
