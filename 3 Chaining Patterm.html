@@ -5,32 +5,39 @@
     <title>Document</title>
     <script>
 
-        document.addEventListener('DOMContentLoaded', function () {
-
-            function $(inp) {
-                // use the constructor to create the object
-                if (typeof inp === 'string') {
-                    return new $(document.querySelector(inp));
-                } else {
-                    if (Object.getPrototypeOf(this) === $.prototype) {
-                        this.element = inp;
-                    }
+        function $(inp) {
+            // use the constructor to create the object
+            if (typeof inp === 'string') {
+                // check if the input is a selector
+                return new $(document.querySelector(inp));
+            } else {
+                // check if jQuery is being invoked as a constructor
+                if (Object.getPrototypeOf(this) === $.prototype) {
+                    this.element = inp;
                 }
-
-                //todo: move the following code to a constructor
-
             }
 
-            $.prototype.html = function (str) {
-                if(typeof str === 'undefined') return this.element.innerHTML;
-                else this.element.innerHTML = str;
-            };
+            //todo: move the following code to a constructor
 
-            /*var div = $('div').html('This is a div').addClass('mydiv');*/
+        }
 
+        $.prototype.html = function (str) {
+            if(typeof str === 'undefined') return this.element.innerHTML;
+            else this.element.innerHTML = str;
+            return this;
+        };
+
+        $.prototype.addClass = function (className) {
+            this.element.classList.add(className);
+            return this;
+        };
+
+        $(function () {
+            // should run after DOMContentLoaded
             var $span = $('span'); // jquery wrapped DOM object
-            $span.html();
+            console.log($span.html('changing the span data ... '));
 
+            $('div').html('changing the div\'s innerHTML.').addClass('mydiv');
         });
 
     </script>
