@@ -8,7 +8,7 @@
 
         // Immediately Invoked Function Expression(IIFE)
 
-        // 1. Not to create global variables
+        // 1. Not to create global variables -->
 
         'use strict';
 
@@ -30,7 +30,17 @@
 
         // Create an object and invoke the method and
         // discard the object after the method invocation
-        
+
+        ({
+            sayHello: function (greeting) {
+                console.log(greeting);
+            }
+        }.sayHello('Hello from immediately invoked method / object expression ... '));
+
+
+        // delete the object x
+        x = null;
+
 
 
 
