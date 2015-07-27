@@ -7,14 +7,17 @@
 
         function $(inp) {
             // use the constructor to create the object
+            if (typeof inp === 'function') {
+                document.addEventListener('DOMContentLoaded', inp);
+                return;
+            }
             if (typeof inp === 'string') {
                 // check if the input is a selector
                 return new $(document.querySelector(inp));
-            } else {
-                // check if jQuery is being invoked as a constructor
-                if (Object.getPrototypeOf(this) === $.prototype) {
-                    this.element = inp;
-                }
+            }
+            if (Object.getPrototypeOf(this) === $.prototype) {
+                this.element = inp;
+                return this;
             }
 
             //todo: move the following code to a constructor
